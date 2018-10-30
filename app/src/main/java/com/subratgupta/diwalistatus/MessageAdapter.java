@@ -55,19 +55,19 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         holder.wa_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               MainActivity.wa_share(message.getMessage());
+               MainActivity.wa_share(message.getMessage()+"\nhttps://goo.gl/BLGm4e");
             }
         });
         holder.copy_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.copy(message.getMessage());
+                MainActivity.copy(message.getMessage()+"\nhttps://goo.gl/BLGm4e");
             }
         });
         holder.share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.share(message.getMessage());
+                MainActivity.share(message.getMessage()+"\nhttps://goo.gl/BLGm4e");
             }
         });
     }
