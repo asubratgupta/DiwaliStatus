@@ -1,8 +1,10 @@
 package com.subratgupta.diwalistatus;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -80,15 +82,34 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
                 color = "795548";
-
         }
         return color;
+    }
+
+    public static void wa_share(String msg) {
+        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+        whatsappIntent.setType("text/plain");
+        whatsappIntent.setPackage("com.whatsapp");
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, msg);
+        try {
+            context.startActivity(whatsappIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(MainActivity.context,"Whatsapp have not been installed.",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static void copy(String msg) {
         ClipData clip = ClipData.newPlainText("label", msg);
         clipboard.setPrimaryClip(clip);
         Toast.makeText(context, "Message Copied to Clipboard.", Toast.LENGTH_SHORT).show();
+    }
+
+    public static void share(String msg){
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Diwali Status:\n");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, msg);
+        context.startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
     private void prepareMovieData() {
